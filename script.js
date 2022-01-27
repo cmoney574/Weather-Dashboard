@@ -167,6 +167,21 @@ function retrieveCityWeather(){
       document.querySelector('#d2Date').textContent = data.list[8].dt_txt
       document.querySelector('#d2Temp').textContent = "Tempature: " + F2 + " F"
       document.querySelector('#d2Hum').textContent = "Humidity: " + data.list[8].main.humidity + "%"
+       // Day three
+       document.querySelector('#d3Name').textContent = data.city.name
+       document.querySelector('#d3Date').textContent = data.list[16].dt_txt
+       document.querySelector('#d3Temp').textContent = "Tempature: " + F3 + " F"
+       document.querySelector('#d3Hum').textContent = "Humidity: " + data.list[16].main.humidity + "%"
+       // Day four
+       document.querySelector('#d4Name').textContent = data.city.name
+       document.querySelector('#d4Date').textContent = data.list[24].dt_txt
+       document.querySelector('#d4Temp').textContent = "Tempature: " + F4 + " F"
+       document.querySelector('#d4Hum').textContent = "Humidity: " + data.list[24].main.humidity + "%"
+       // Day five
+       document.querySelector('#d5Name').textContent = data.city.name
+       document.querySelector('#d5Date').textContent = data.list[32].dt_txt
+       document.querySelector('#d5Temp').textContent = "Tempature: " + F5 + " F"
+       document.querySelector('#d5Hum').textContent = "Humidity: " + data.list[32].main.humidity + "%"
     });
   }
 
