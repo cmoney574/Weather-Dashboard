@@ -6,37 +6,25 @@ var weatherForecast2 = document.querySelector('#forecast2')
 var weatherForecast3 = document.querySelector('#forecast3')
 var weatherForecast4 = document.querySelector('#forecast4')
 var weatherForecast5 = document.querySelector('#forecast5')
+var save = document.querySelector('#save')
 var start = true
-
-function retrieveAtlantaWeather(){
-
-var requestUrl = new URL('https://api.openweathermap.org/data/2.5/weather?');
-  x = "q"
-  y = "Atlanta"
-  requestUrl.searchParams.append(x, y);
-  a = "appid"
-  b = "f229c031e5ffdd97acd36ae1365477cb"
-  requestUrl.searchParams.append(a, b);
-  console.log(requestUrl)
-  fetch(requestUrl)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-      console.log(data);
-      console.log(data.name)
-      console.log(data.main.temp)
-      var Kelvin = data.main.temp
-      var Farhen = Math.round((Kelvin - 273.15)*1.8 +32)
-      console.log(Farhen)
-});
+var storedcities = JSON.parse(localStorage.getItem("cities"));
+if(!storedcities){
+  storedcities = []
 }
-retrieveAtlantaWeather();
 
+
+function retrieveSave(){
+  storedcities.forEach(e => {
+    save.appendChild(document.createElement('button')).textContent = e
+  });
+}
+retrieveSave();
 function handleWeather(event){
   event.preventDefault();
   retrieveCityWeather();
   forecastWeather();
+  saving();
 }
 
 function retrieveCityWeather(){
@@ -184,5 +172,13 @@ function retrieveCityWeather(){
        document.querySelector('#d5Hum').textContent = "Humidity: " + data.list[32].main.humidity + "%"
     });
   }
+
+function saving(){
+  console.log("saving")
+  storedcities.push(userCity.value)
+  console.log(storedcities)
+  localStorage.setItem("cities", JSON.stringify(storedcities));
+  save.appendChild(document.createElement('button')).textContent = userCity.value
+}
 
 submitButton.addEventListener("click",handleWeather)
